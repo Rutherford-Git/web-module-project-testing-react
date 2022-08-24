@@ -4,7 +4,6 @@ import Loading from './Loading';
 
 const Show = (props) => {
   const { handleSelect, selectedSeason, show } = props;
-
   if (!show)
     return <Loading />
 
@@ -24,7 +23,7 @@ const Show = (props) => {
       </select>
 
       {
-        (selectedSeason !== "none") && <Episodes episodes={show.seasons[selectedSeason].episodes} />
+        (selectedSeason !== "none") && <Episodes data-testid="episodes-container" episodes={show.seasons[selectedSeason].episodes} />
       }
     </div>
   );
