@@ -7,8 +7,8 @@ import { userEvent } from '@testing-library/user-event/';
 
 
 const testShow = {
-    name: '',
-    summary: "A love letter to the '80s classics that",
+    name: 'test show',
+    summary: "test summary",
     seasons: [
         {
             id: 0,
@@ -20,8 +20,7 @@ const testShow = {
             name: "season 2",
             episodes: [],
         }
-    ],
-    
+    ],  
 };
 
 test('renders without errors', () => {
@@ -45,7 +44,7 @@ test('handleSelect is called when an season is selected', () => {
 
     render(<Show show={testShow} selectedSeason={'none'} /* handleSelect={handleSelect} *//>);
     const select = screen.getByLabelText(/Select A Season/i);
-    userEvent.selectOptions(select, ['1']);
+    userEvent.selectOptions(select, [1]);
 
    /*  expect(handleSelect).toBeCalled(); */
  });
@@ -55,7 +54,7 @@ test('component renders when no seasons are selected and when rerenders with a s
     let episodes = screen.queryByTestId('episodes-container');
     expect(episodes).not.toBeInTheDocument();
 
-    rerender(<Show show={testShow} selectedSeason={'none'}/>)
-    episodes = screen.queryByTestId('episodes')
+    rerender(<Show show={testShow} selectedSeason={1}/>)
+    episodes = screen.queryByTestId('episodes-container')
     expect(episodes).toBeInTheDocument()
 });
